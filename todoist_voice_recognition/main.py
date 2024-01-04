@@ -1,16 +1,19 @@
-# This is a sample Python script.
+import os
 
-# Press Mayús+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from todoist_api_python.api import TodoistAPI
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+my_token = os.getenv("TODOIST_TOKEN")
+api = TodoistAPI(my_token)
 
 
-# Press the green button in the gutter to run the script.
+def main():
+    try:
+        projects = api.get_projects()
+        print(projects)
+
+    except Exception as error:
+        print(error)
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
